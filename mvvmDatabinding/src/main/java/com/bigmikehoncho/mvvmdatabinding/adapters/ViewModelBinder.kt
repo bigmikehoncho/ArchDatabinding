@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package com.bigmikehoncho.mvvmdatabinding.utils;
+package com.bigmikehoncho.mvvmdatabinding.adapters
 
-/**
- * Only for internal purposes
- */
-public class Preconditions {
-    public static <T> void checkNotNull(T value, String name) {
-        if (value == null) {
-            throw new NullPointerException(name + " should not be null");
-        }
-    }
+import android.arch.lifecycle.ViewModel
+import android.databinding.ViewDataBinding
+
+interface ViewModelBinder {
+    fun bind(viewDataBinding: ViewDataBinding, viewModel: ViewModel?)
 }

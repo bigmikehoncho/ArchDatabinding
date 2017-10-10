@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.bigmikehoncho.mvvmdatabinding.adapters;
+package com.bigmikehoncho.mvvmdatabinding.adapters
 
-import android.arch.lifecycle.ViewModel;
-import android.support.annotation.LayoutRes;
+import android.arch.lifecycle.ViewModel
+import android.support.annotation.LayoutRes
 
-public interface ViewProvider {
+interface ViewProvider {
     @LayoutRes
-    int getView(ViewModel vm);
+    fun getView(vm: ViewModel): Int
 }

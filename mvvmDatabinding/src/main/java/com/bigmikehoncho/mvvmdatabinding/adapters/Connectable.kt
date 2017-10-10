@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package com.bigmikehoncho.mvvmdatabinding.adapters;
+package com.bigmikehoncho.mvvmdatabinding.adapters
 
-import android.arch.lifecycle.ViewModel;
-import android.databinding.ViewDataBinding;
+interface Connectable {
+    fun connect()
 
-public interface ViewModelBinder {
-    void bind(ViewDataBinding viewDataBinding, ViewModel viewModel);
+    fun removeCallback()
 }
