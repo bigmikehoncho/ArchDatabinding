@@ -24,7 +24,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class RecyclerViewAdapter<VM : ViewModel>(private val source: ObservableList<VM>,
+open class RecyclerViewAdapter<VM : ViewModel>(private val source: ObservableList<VM>,
                                           private val viewProvider: ViewProvider,
                                           private val binder: ViewModelBinder) : RecyclerView.Adapter<RecyclerViewAdapter.DataBindingViewHolder>() {
     private val onListChangedCallback = object : ObservableList.OnListChangedCallback<ObservableList<VM>>() {

@@ -4,7 +4,7 @@ import io.reactivex.functions.Consumer
 import java.lang.Exception
 
 class ViewState<N : Navigator> {
-    var navigator: N? = null
+    private var navigator: N? = null
         set(navigator) {
             field = navigator
 

@@ -25,7 +25,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class ViewPagerAdapter<VM : ViewModel>(private val source: ObservableList<VM>, private val viewProvider: ViewProvider, private val binder: ViewModelBinder) : PagerAdapter(), Connectable {
+open class ViewPagerAdapter<VM : ViewModel>(private val source: ObservableList<VM>, private val viewProvider: ViewProvider, private val binder: ViewModelBinder) : PagerAdapter(), Connectable {
 
     private val onListChangedCallback = object : ObservableList.OnListChangedCallback<ObservableList<VM>>() {
         override fun onChanged(viewModels: ObservableList<VM>) {
