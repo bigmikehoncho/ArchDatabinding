@@ -1,40 +1,32 @@
 package com.bigmikehoncho.mvvmdatabinding
 
-import android.app.Activity
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
-import android.view.LayoutInflater
-
-import com.bigmikehoncho.mvvmdatabinding.adapters.ViewModelBinder
+import android.support.v7.app.AppCompatActivity
 import com.bigmikehoncho.mvvmdatabinding.utils.BindingUtils
 
-/**
- * Created by mike on 3/3/17.
- */
-
-class MvvmBinder<Binding : ViewDataBinding> {
+class MvvmBinder<out Binding : ViewDataBinding> {
     private lateinit var binding: Binding
 
-    private val defaultBinder: ViewModelBinder
-        get() {
-            return BindingUtils.defaultBinder
-        }
+    private val defaultBinder = BindingUtils.defaultBinder
 
     /**
      * Call after super.onCreate of activity
      *
      * @param activity as VMBinder
      */
-    fun onCreate(activity: Activity): Binding? {
-        val binder = activity as VMBinder
-        binding = DataBindingUtil.setContentView(activity, binder.layoutId)
-        defaultBinder.bind(binding, binder.createViewModel())
+    fun onCreate(activity: AppCompatActivity): Binding {
+        activity as VMBinder
+        binding = DataBindingUtil.setContentView(activity, activity.layoutId)
+        defaultBinder.bind(binding, ViewModelProviders.of(activity).get(activity.provideViewModelClass()))
         return binding
     }
 
-    fun onCreate(binder: VMBinder, inflater: LayoutInflater): Binding? {
-        binding = DataBindingUtil.inflate(inflater, binder.layoutId, null, false)
-        defaultBinder.bind(binding, binder.createViewModel())
+    fun onCreate(fragment: android.support.v4.app.Fragment): Binding {
+        fragment as VMBinder
+        binding = DataBindingUtil.inflate(fragment.layoutInflater, fragment.layoutId, null, false)
+        defaultBinder.bind(binding, ViewModelProviders.of(fragment).get(fragment.provideViewModelClass()))
         return binding
     }
 

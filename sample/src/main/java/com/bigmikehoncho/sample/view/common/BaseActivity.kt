@@ -1,20 +1,20 @@
 package com.bigmikehoncho.sample.view.common
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProviders
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.bigmikehoncho.mvvmdatabinding.MvvmBinder
+import com.bigmikehoncho.mvvmdatabinding.VMBinder
 
-/**
- * Created by mike on 10/5/17.
- */
-abstract class BaseActivity<VM : ViewModel> : AppCompatActivity() {
+abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(), VMBinder {
 
-    protected var viewModel: VM? = null
+    protected val mvvmBinder = MvvmBinder<Binding>()
+    protected lateinit var binding: Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        viewModel = ViewModelProviders.of(this).get(provideViewModelClass())
         super.onCreate(savedInstanceState)
+
+        binding = mvvmBinder.onCreate(this)
 
         onInitFields()
 
@@ -27,15 +27,11 @@ abstract class BaseActivity<VM : ViewModel> : AppCompatActivity() {
         onImplFields()
     }
 
-    protected abstract fun provideLayoutId(): Int
+    protected open fun onInitFields() {}
 
-    protected abstract fun provideViewModelClass(): Class<VM>
+    protected open fun onStartFromNewState() {}
 
-    protected fun onInitFields() {}
+    protected open fun onRestoreFromSavedState(savedInstanceState: Bundle) {}
 
-    protected fun onStartFromNewState() {}
-
-    protected fun onRestoreFromSavedState(savedInstanceState: Bundle) {}
-
-    protected fun onImplFields() {}
+    protected open fun onImplFields() {}
 }
