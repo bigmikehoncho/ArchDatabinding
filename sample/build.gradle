@@ -38,7 +38,7 @@ dependencies {
     compile project(path: ':mvvmDatabinding')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "com.google.dagger:dagger:$dagger_version"
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    compile "com.jakewharton.timber:timber:$timber_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.android.databinding:compiler:$android_plugin_version"
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'

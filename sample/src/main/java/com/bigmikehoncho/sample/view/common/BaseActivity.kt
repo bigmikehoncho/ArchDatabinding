@@ -8,13 +8,17 @@ import com.bigmikehoncho.mvvmdatabinding.VMBinder
 
 abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(), VMBinder {
 
-    protected val mvvmBinder = MvvmBinder<Binding>()
+    private val mvvmBinder = MvvmBinder<Binding>()
     protected lateinit var binding: Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        lifecycle.addObserver(mvvmBinder)
+
+        componentInjection()
+
         super.onCreate(savedInstanceState)
 
-        binding = mvvmBinder.onCreate(this)
+        binding = mvvmBinder.createBinding(this)
 
         onInitFields()
 
@@ -26,6 +30,8 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(), VM
 
         onImplFields()
     }
+
+    protected abstract fun componentInjection()
 
     protected open fun onInitFields() {}
 
