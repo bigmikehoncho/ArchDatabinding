@@ -40,10 +40,9 @@ class SampleApp : Application() {
     }
 
     companion object {
-        //platformStatic allow access it from java code
-        @JvmStatic lateinit var appComponent: AppComponent private set
-        @JvmStatic lateinit var instance: SampleApp private set
-        @JvmStatic lateinit var refWatcher: RefWatcher private set
+        lateinit var appComponent: AppComponent private set
+        lateinit var instance: SampleApp private set
+        lateinit var refWatcher: RefWatcher private set
     }
 
 }
