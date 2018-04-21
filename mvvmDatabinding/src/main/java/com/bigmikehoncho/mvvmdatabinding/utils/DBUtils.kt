@@ -5,11 +5,9 @@ import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.databinding.ObservableInt
 import io.reactivex.Observable
-import io.reactivex.annotations.NonNull
 import io.reactivex.disposables.Disposables
 
-@NonNull
-fun <T> toObservable(@NonNull field: ObservableField<T>): Observable<T> {
+fun <T> toObservable(field: ObservableField<T>): Observable<T> {
     return Observable.create { e ->
         val value = field.get()
         if (value != null) {
@@ -25,8 +23,7 @@ fun <T> toObservable(@NonNull field: ObservableField<T>): Observable<T> {
     }
 }
 
-@NonNull
-fun toObservable(@NonNull field: ObservableBoolean): Observable<Boolean> {
+fun toObservable(field: ObservableBoolean): Observable<Boolean> {
     return Observable.create { e ->
         e.onNext(field.get())
         val callback = object : OnPropertyChangedCallback() {
@@ -39,8 +36,7 @@ fun toObservable(@NonNull field: ObservableBoolean): Observable<Boolean> {
     }
 }
 
-@NonNull
-fun toObservable(@NonNull field: ObservableInt): Observable<Int> {
+fun toObservable(field: ObservableInt): Observable<Int> {
     return Observable.create { e ->
         e.onNext(field.get())
         val callback = object : OnPropertyChangedCallback() {
@@ -58,9 +54,7 @@ fun toObservable(@NonNull field: ObservableInt): Observable<Int> {
  *
  * @return DataBinding field created from the specified Observable
  */
-@NonNull
-fun <T> toField(@NonNull observable: Observable<T>): ReadOnlyField<T> = ReadOnlyField.create(observable)
+fun <T> toField(observable: Observable<T>): ReadOnlyField<T> = ReadOnlyField.create(observable)
 
-@NonNull
-fun toBooleanField(@NonNull observable: Observable<Boolean>): ReadOnlyBoolean = ReadOnlyBoolean.create(observable)
+fun toBooleanField(observable: Observable<Boolean>): ReadOnlyBoolean = ReadOnlyBoolean.create(observable)
 

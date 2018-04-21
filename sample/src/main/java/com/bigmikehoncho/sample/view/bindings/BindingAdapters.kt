@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.bigmikehoncho.mvvmdatabinding.adapters.ViewModelBinder
 import com.bigmikehoncho.mvvmdatabinding.adapters.ViewProvider
-import com.bigmikehoncho.mvvmdatabinding.utils.BindingUtils
+import com.bigmikehoncho.mvvmdatabinding.utils.bindAdapterWithDefaultBinder
 import com.bigmikehoncho.sample.BR
 import com.bigmikehoncho.sample.SampleApp
 
@@ -37,7 +37,7 @@ object BindingAdapters {
     @BindingAdapter("items", "view_provider")
     fun <VM : ViewModel> bindRecyclerViewAdapter(recyclerView: RecyclerView, items: ObservableList<VM>, viewProvider: ViewProvider) {
         val previousAdapter = recyclerView.adapter
-        BindingUtils.bindAdapterWithDefaultBinder(recyclerView, items, viewProvider)
+        bindAdapterWithDefaultBinder(recyclerView, items, viewProvider)
 
         // Previous adapter should get deallocated
         if (previousAdapter != null)
@@ -50,25 +50,10 @@ object BindingAdapters {
     @BindingAdapter("items", "view_provider")
     fun <VM : ViewModel> bindViewPagerAdapter(viewPager: ViewPager, items: ObservableList<VM>, viewProvider: ViewProvider) {
         val previousAdapter = viewPager.adapter
-        BindingUtils.bindAdapterWithDefaultBinder(viewPager, items, viewProvider)
+        bindAdapterWithDefaultBinder(viewPager, items, viewProvider)
 
         // Previous adapter should get deallocated
         if (previousAdapter != null)
             SampleApp.refWatcher.watch(previousAdapter)
     }
-
-//    @BindingConversion
-//    public fun toOnClickListener(listener: Action?): View.OnClickListener? {
-//        return if (listener != null) {
-//            View.OnClickListener {
-//                try {
-//                    listener.run()
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-//        } else {
-//            null
-//        }
-//    }
 }

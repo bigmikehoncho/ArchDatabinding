@@ -8,12 +8,11 @@ import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.bigmikehoncho.mvvmdatabinding.utils.BindingUtils
+import com.bigmikehoncho.mvvmdatabinding.adapters.ViewModelBinder
 
-class MvvmBinder<out Binding : ViewDataBinding> : LifecycleObserver {
+class MvvmBinder<out Binding : ViewDataBinding>(private val defaultBinder: ViewModelBinder) : LifecycleObserver {
 
     private lateinit var binding: Binding
-    private val defaultBinder = BindingUtils.defaultBinder
 
     /**
      * Call after super.createBinding of activity
