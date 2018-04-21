@@ -106,7 +106,7 @@ object BindingUtils {
 
     // Extra Utilities
 
-    @BindingAdapter(value = *arrayOf("layout_vertical", "reverse_layout"), requireAll = false)
+    @BindingAdapter(value = ["layout_vertical", "reverse_layout"], requireAll = false)
     fun bindLayoutManager(recyclerView: RecyclerView, vertical: Boolean, reverseLayout: Boolean) {
         val orientation = if (vertical) RecyclerView.VERTICAL else RecyclerView.HORIZONTAL
         recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, orientation, reverseLayout)

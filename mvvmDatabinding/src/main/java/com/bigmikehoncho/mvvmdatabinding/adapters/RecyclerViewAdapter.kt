@@ -66,8 +66,8 @@ open class RecyclerViewAdapter<VM : ViewModel>(private val source: ObservableLis
         holder.viewBinding.executePendingBindings()
     }
 
-    override fun onViewRecycled(holder: DataBindingViewHolder?) {
-        binder.bind(holder!!.viewBinding, null)
+    override fun onViewRecycled(holder: DataBindingViewHolder) {
+        binder.bind(holder.viewBinding, null)
         holder.viewBinding.executePendingBindings()
     }
 

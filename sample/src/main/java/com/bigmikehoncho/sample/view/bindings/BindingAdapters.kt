@@ -27,7 +27,7 @@ object BindingAdapters {
     @BindingAdapter("android:visibility")
     fun bindVisibility(@NonNull view: View, @Nullable visible: Boolean?) {
         val visibility = if (visible != null && visible) View.VISIBLE else View.GONE
-        view.setVisibility(visibility)
+        view.visibility = visibility
     }
 
 

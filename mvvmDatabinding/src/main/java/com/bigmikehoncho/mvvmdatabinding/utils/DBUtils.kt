@@ -17,7 +17,7 @@ fun <T> toObservable(@NonNull field: ObservableField<T>): Observable<T> {
         }
         val callback = object : OnPropertyChangedCallback() {
             override fun onPropertyChanged(observable: android.databinding.Observable, i: Int) {
-                e.onNext(field.get())
+                e.onNext(field.get()!!)
             }
         }
         field.addOnPropertyChangedCallback(callback)

@@ -70,7 +70,7 @@ open class ViewPagerAdapter<VM : ViewModel>(private val source: ObservableList<V
         container.removeView(binding.root)
     }
 
-    override fun getItemPosition(`object`: Any?): Int {
+    override fun getItemPosition(`object`: Any): Int {
         return super.getItemPosition(`object`)
     }
 
